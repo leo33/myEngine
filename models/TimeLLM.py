@@ -91,7 +91,7 @@ class Model(nn.Module):
                     'openai-community/gpt2',
                     trust_remote_code=True,
                     local_files_only=True,
-                    config=self.gpt2_config,
+                    #config=self.gpt2_config,
                 )
             except EnvironmentError:  # downloads model from HF is not already done
                 print("Local model files not found. Attempting to download...")
@@ -99,7 +99,7 @@ class Model(nn.Module):
                     'openai-community/gpt2',
                     trust_remote_code=True,
                     local_files_only=False,
-                    config=self.gpt2_config,
+                    #config=self.gpt2_config,
                 )
 
             try:
