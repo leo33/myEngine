@@ -90,7 +90,7 @@ class Model(nn.Module):
                 self.llm_model = GPT2Model.from_pretrained(
                     'openai-community/gpt2',
                     trust_remote_code=True,
-                    local_files_only=True,
+                    #local_files_only=True,
                     #config=self.gpt2_config,
                 )
             except EnvironmentError:  # downloads model from HF is not already done
@@ -98,7 +98,7 @@ class Model(nn.Module):
                 self.llm_model = GPT2Model.from_pretrained(
                     'openai-community/gpt2',
                     trust_remote_code=True,
-                    local_files_only=False,
+                    #local_files_only=False,
                     #config=self.gpt2_config,
                 )
 
@@ -106,14 +106,14 @@ class Model(nn.Module):
                 self.tokenizer = GPT2Tokenizer.from_pretrained(
                     'openai-community/gpt2',
                     trust_remote_code=True,
-                    local_files_only=True,
+                    #local_files_only=True,
                 )
             except EnvironmentError:  # downloads the tokenizer from HF if not already done
                 print("Local tokenizer files not found. Atempting to download them..")
                 self.tokenizer = GPT2Tokenizer.from_pretrained(
                     'openai-community/gpt2',
                     trust_remote_code=True,
-                    local_files_only=True,
+                    #local_files_only=True,
                 )
         elif configs.llm_model == 'BERT':
             self.bert_config = BertConfig.from_pretrained('google-bert/bert-base-uncased')
