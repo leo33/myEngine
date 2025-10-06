@@ -21,8 +21,8 @@ class Dataset_FRED_month(Dataset):
         # pred_len: prediction sequence length
         if size == None:
             self.seq_len = 3 * 4      # let's take 1 year of data
-            self.label_len = 3 * 2    # 1/2 year 
-            self.pred_len = 3 * 2     # 1/2 year
+            self.label_len = 4    # 4 months
+            self.pred_len = 4     # 4 months
         else:
             self.seq_len = size[0]
             self.label_len = size[1]

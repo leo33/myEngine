@@ -1,0 +1,1 @@
+The FRED data collection is a crucial indicator in economical long-term development. This dataset consists of 20 years data of different economical indicators in US. Each data point consists of the target value ”OT” and 4 economical indicators. The train/val/test is 12/4/4 months.
