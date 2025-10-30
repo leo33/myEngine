@@ -188,16 +188,16 @@ for ii in range(args.itr):
             iter_count += 1
             model_optim.zero_grad()
 
-            batch_x = batch_x.float().to(accelerator.accelerator.device)
-            batch_y = batch_y.float().to(accelerator.accelerator.device)
-            batch_x_mark = batch_x_mark.float().to(accelerator.accelerator.device)
-            batch_y_mark = batch_y_mark.float().to(accelerator.accelerator.device)
+            batch_x = batch_x.float().to(accelerator.device)
+            batch_y = batch_y.float().to(accelerator.device)
+            batch_x_mark = batch_x_mark.float().to(accelerator.device)
+            batch_y_mark = batch_y_mark.float().to(accelerator.device)
 
             # decoder input
             dec_inp = torch.zeros_like(batch_y[:, -args.pred_len:, :]).float().to(
-                accelerator.accelerator.device)
+                accelerator.device)
             dec_inp = torch.cat([batch_y[:, :args.label_len, :], dec_inp], dim=1).float().to(
-                accelerator.accelerator.device)
+                accelerator.device)
 
             # encoder - decoder
             if args.use_amp:
@@ -209,7 +209,7 @@ for ii in range(args.itr):
 
                     f_dim = -1 if args.features == 'MS' else 0
                     outputs = outputs[:, -args.pred_len:, f_dim:]
-                    batch_y = batch_y[:, -args.pred_len:, f_dim:].to(accelerator.accelerator.device)
+                    batch_y = batch_y[:, -args.pred_len:, f_dim:].to(accelerator.device)
                     loss = criterion(outputs, batch_y)
                     train_loss.append(loss.item())
             else:
