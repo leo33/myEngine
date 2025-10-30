@@ -231,3 +231,16 @@ def load_content(args):
     with open('./dataset/prompt_bank/{0}.txt'.format(file), 'r') as f:
         content = f.read()
     return content
+
+
+def visual(true, preds=None, name='./pic/test.pdf'):
+    """
+    Results visualization
+    """
+    plt.figure()
+    if preds is not None:
+        plt.plot(preds, label='Prediction', linewidth=2)
+    plt.plot(true, label='GroundTruth', linewidth=2)
+    plt.legend()
+    plt.savefig(name, bbox_inches='tight')
+
