@@ -333,12 +333,12 @@ for ii in range(args.itr):
             batch_y = batch_y[:, -args.pred_len:, :].to(accelerator.device)
             outputs = outputs.detach().cpu().numpy()
             batch_y = batch_y.detach().cpu().numpy()
-            if test_data.scale and args.inverse:
-                shape = batch_y.shape
-                if outputs.shape[-1] != batch_y.shape[-1]:
-                    outputs = np.tile(outputs, [1, 1, int(batch_y.shape[-1] / outputs.shape[-1])])
-                outputs = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
-                batch_y = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
+            # if test_data.scale and args.inverse:
+            #     shape = batch_y.shape
+            #     if outputs.shape[-1] != batch_y.shape[-1]:
+            #         outputs = np.tile(outputs, [1, 1, int(batch_y.shape[-1] / outputs.shape[-1])])
+            #     outputs = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
+            #     batch_y = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
 
             outputs = outputs[:, :, f_dim:]
             batch_y = batch_y[:, :, f_dim:]
