@@ -289,8 +289,9 @@ for ii in range(args.itr):
     new_state_dict = OrderedDict()
     for k, v in state_dict.items():
         # Remove the 'module.' prefix from the key
-        if k.startswith('module.'):
-            name = k[7:] # remove 'module.' prefix
+        if not k.startswith('module.'):
+            name = 'module.' + k # add 'module.' prefix
+            # print( 'added module to name:', name)
         else:
             name = k
         new_state_dict[name] = v
@@ -349,9 +350,9 @@ for ii in range(args.itr):
             trues.append(true)
             if i % 20 == 0:
                 input = batch_x.detach().cpu().numpy()
-                if test_data.scale and args.inverse:
-                    shape = input.shape
-                    input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                # if test_data.scale and args.inverse:
+                #     shape = input.shape
+                #     input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
                 gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                 pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                 visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
