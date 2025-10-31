@@ -275,7 +275,32 @@ for ii in range(args.itr):
     
       
     print('loading model')
-    model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
+
+    checkpoint_path = os.path.join(path, 'checkpoint')
+    
+    state_dict = torch.load(checkpoint_path)
+
+    # Check if the keys have the 'module.' prefix
+    # You can inspect the keys if needed: print(state_dict.keys())
+
+    # 2. Create a new, ordered dictionary to store the modified keys
+    from collections import OrderedDict
+
+    new_state_dict = OrderedDict()
+    for k, v in state_dict.items():
+        # Remove the 'module.' prefix from the key
+        if k.startswith('module.'):
+            name = k[7:] # remove 'module.' prefix
+        else:
+            name = k
+        new_state_dict[name] = v
+
+    # 3. Load the modified state_dict into your model
+    # Make sure your 'model' is defined before running this
+    # model = YourModelClass(...)
+    model.load_state_dict(new_state_dict)
+
+    #model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
 
     preds = []
     trues = []
