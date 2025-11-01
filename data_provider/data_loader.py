@@ -20,9 +20,9 @@ class Dataset_FRED_day(Dataset):
         # label_len: start token length
         # pred_len: prediction sequence length
         if size == None:
-            self.seq_len = 30 * 6      # let's take 1/2 year of data
-            self.label_len = 30    # 1 months
-            self.pred_len = 30     # 4 months
+            self.seq_len = 30 * 6      # let's take 6 months of data
+            self.label_len = 30 * 2    # 2 months
+            self.pred_len = 30 * 2     # 2 months
         else:
             self.seq_len = size[0]
             self.label_len = size[1]
