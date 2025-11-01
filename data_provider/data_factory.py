@@ -11,7 +11,7 @@ data_dict = {
     'Weather': Dataset_Custom,
     'm4': Dataset_M4,
     'FREDm1': Dataset_FRED_month,
-    'FREDd21': Dataset_FRED_day,
+    'FREDd2': Dataset_FRED_day,
 }
 
 
