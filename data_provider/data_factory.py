@@ -1,4 +1,4 @@
-from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_M4, Dataset_FRED_month
+from data_provider.data_loader import Dataset_FRED_day, Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_M4, Dataset_FRED_month
 from torch.utils.data import DataLoader
 
 data_dict = {
@@ -11,6 +11,7 @@ data_dict = {
     'Weather': Dataset_Custom,
     'm4': Dataset_M4,
     'FREDm1': Dataset_FRED_month,
+    'FREDd21': Dataset_FRED_day,
 }
 
 
