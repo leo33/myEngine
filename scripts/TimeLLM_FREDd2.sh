@@ -18,13 +18,13 @@ accelerate launch --mixed_precision bf16 --num_processes $num_process --main_pro
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path FREDd2.csv \
-  --model_id FREDd2_512_24 \
+  --model_id FREDd2_128_12 \
   --model $model_name \
   --data FREDd2 \
-  --features M \
-  --seq_len 512 \
-  --label_len 48 \
-  --pred_len 24 \
+  --features MS \
+  --seq_len 128 \
+  --label_len 24 \
+  --pred_len 12 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \

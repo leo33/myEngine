@@ -21,7 +21,7 @@ accelerate launch --mixed_precision bf16 --num_processes $num_process --main_pro
   --model_id FREDm1_512_96 \
   --model $model_name \
   --data FREDm1 \
-  --features M \
+  --features MS \
   --seq_len 12 \
   --label_len 3 \
   --pred_len 4 \
