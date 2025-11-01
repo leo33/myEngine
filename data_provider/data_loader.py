@@ -4,7 +4,6 @@ import pandas as pd
 from torch.utils.data import Dataset
 from sklearn.preprocessing import StandardScaler
 from utils.timefeatures import time_features
-from data_provider.m4 import M4Dataset, M4Meta
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -12,7 +11,7 @@ warnings.filterwarnings('ignore')
 class Dataset_FRED_day(Dataset):
     def __init__(self, root_path, flag='train', size=None,
                  features='S', data_path='FREDd2.csv',
-                 target='OT', scale=True, timeenc=0, freq='h', percent=100,
+                 target='OT', scale=True, timeenc=0, freq='d', percent=100,
                  seasonal_patterns=None):
         
         # size
@@ -87,8 +86,8 @@ class Dataset_FRED_day(Dataset):
         df_stamp['date'] = pd.to_datetime(df_stamp.date)
         if self.timeenc == 0:
             df_stamp['month'] = df_stamp.date.apply(lambda row: row.month, 1)
-            #df_stamp['day'] = df_stamp.date.apply(lambda row: row.day, 1)
-            #df_stamp['weekday'] = df_stamp.date.apply(lambda row: row.weekday(), 1)
+            df_stamp['day'] = df_stamp.date.apply(lambda row: row.day, 1)
+            df_stamp['weekday'] = df_stamp.date.apply(lambda row: row.weekday(), 1)
             #df_stamp['hour'] = df_stamp.date.apply(lambda row: row.hour, 1)
             data_stamp = df_stamp.drop(['date'], 1).values
         elif self.timeenc == 1:
