@@ -370,7 +370,7 @@ for ii in range(args.itr):
         os.makedirs(folder_path)
 
     # dtw calculation
-        dtw = 'Not calculated'
+    dtw = 'Not calculated'
 
     mae, mse, rmse, mape, mspe = metric(preds, trues)
     print('mse:{}, mae:{}, dtw:{}'.format(mse, mae, dtw))
