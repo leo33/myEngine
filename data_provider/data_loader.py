@@ -19,9 +19,9 @@ class Dataset_FRED_day(Dataset):
         # label_len: start token length
         # pred_len: prediction sequence length
         if size == None:
-            self.seq_len = 30 * 6      # let's take 6 months of data
-            self.label_len = 30 * 2    # 2 months
-            self.pred_len = 30 * 2     # 2 months
+            self.seq_len = 30 * 2      # let's take 2 months of data
+            self.label_len = 4    # 4 days
+            self.pred_len = 2     # 2 days
         else:
             self.seq_len = size[0]
             self.label_len = size[1]
@@ -114,8 +114,8 @@ class Dataset_FRED_day(Dataset):
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
-        print('len calc:', (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in)
-        return (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in
+        length = (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in
+        return length
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
